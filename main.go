@@ -114,7 +114,7 @@ func newRegistry() *prometheus.Registry {
 			desc:      prometheus.NewDesc("container_cpu_usage_seconds_total", "Cumulative cpu time consumed in seconds", []string{}, nil),
 			valueType: prometheus.CounterValue,
 			valueCalc: []sysReader{
-				&sysNumeric{fileName: "/sys/fs/cgroup/cpu,cpuacct/cpuacct.usage", divisor: 1000000000},
+				&sysNumeric{fileName: "/sys/fs/cgroup/cpu,cpuacct/cpuacct.usage", divisor: 1e9},
 			},
 		}, {
 			desc:      prometheus.NewDesc("container_network_transmit_bytes_total", "Cumulative count of bytes transmitted", []string{"interface"}, nil),
