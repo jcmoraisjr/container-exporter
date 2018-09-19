@@ -142,5 +142,8 @@ var (
 func main() {
 	flags.Parse(os.Args)
 	http.Handle("/", promhttp.HandlerFor(newRegistry(), promhttp.HandlerOpts{}))
-	http.ListenAndServe(*flagAddr, nil)
+	if err := http.ListenAndServe(*flagAddr, nil); err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 }
